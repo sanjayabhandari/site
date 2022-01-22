@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (Composer $composer) {
+Route::get('/', function () {
     
     return view('welcome');
 });
@@ -22,3 +22,12 @@ Route::get('/', function (Composer $composer) {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/cache-clear',function(Composer $composer){
+    \Artisan::call('route:cache');
+    \Artisan::call('route:clear');
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('migrate');
+    $composer->dumpAutoloads();
+});
