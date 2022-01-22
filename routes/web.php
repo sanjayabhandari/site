@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Composer $composer) {
+    $composer->dumpAutoloads();
+    \Artisan::call('route:cache');
+    \Artisan::call('route:clear');
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('migrate');
     return view('welcome');
 });
 
