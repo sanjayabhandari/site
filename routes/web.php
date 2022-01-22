@@ -21,6 +21,7 @@ Route::get('/', function (Composer $composer) {
     \Artisan::call('cache:clear');
     \Artisan::call('config:cache');
     \Artisan::call('migrate');
+    
     return view('welcome');
 });
 
