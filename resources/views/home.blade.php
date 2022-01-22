@@ -20,4 +20,7 @@
         </div>
     </div>
 </div>
+<script>
+    console.log('hello')
+    </script>
 @endsection
